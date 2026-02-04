@@ -1,14 +1,3 @@
-Good — that constraint (plain-text, repo-local, user-owned data) is actually a *huge design anchor*. It pushes you toward a focused, high-leverage tool instead of a Jira clone. Think:
-
-> **git-native project tracking with a TUI front-end and smart automation**
-
-Not “project management platform.”
-More like: **workflow layer on top of git + PR + issues**.
-
-Let’s tighten scope and design this properly.
-
----
-
 # 🎯 Product Definition (Tight Scope)
 
 **lazytrack = git-native project tracker TUI**

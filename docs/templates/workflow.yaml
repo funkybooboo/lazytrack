@@ -1,0 +1,35 @@
+# lazytrack Workflow Rules Template
+# Copy to .lazytrack/workflow.yaml and customize for your team's workflow.
+
+rules:
+  # When a branch is created with task ID, mark task as in progress
+  - when: branch_created
+    set_status: in_progress
+    add_link: branch
+
+  # When a PR is opened, move task to review
+  - when: pr_opened
+    set_status: review
+    add_link: pr
+
+  # When a PR is marked as draft, move back to in progress
+  - when: pr_draft
+    set_status: in_progress
+
+  # When a PR is marked ready for review
+  - when: pr_ready
+    set_status: review
+
+  # When a PR is merged, mark task as done
+  - when: pr_merged
+    set_status: done
+    set_field:
+      updated: "{{now}}"
+
+  # When a PR is closed without merging, move back to todo
+  - when: pr_closed
+    set_status: todo
+
+  # Always link commits that mention task IDs
+  - when: commit_detected
+    add_link: commit

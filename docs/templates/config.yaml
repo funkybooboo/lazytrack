@@ -1,0 +1,92 @@
+# lazytrack Configuration Template
+# This is a full example showing all available configuration options.
+# Copy to .lazytrack/config.yaml and customize for your project.
+
+# Project metadata
+project:
+  name: "My Project"
+  description: "Project tracking for my awesome application"
+  prefix: "MP"  # Task ID prefix (2-5 uppercase letters)
+
+# Auto-incrementing task counter (managed by lazytrack)
+task_counter: 1
+
+# Default values for new tasks
+defaults:
+  status: "todo"
+  priority: "medium"
+  owner: null  # Uses git user if null
+  labels: []
+
+# Status workflow configuration
+statuses:
+  - id: "todo"
+    label: "To Do"
+    color: "gray"
+  - id: "in_progress"
+    label: "In Progress"
+    color: "blue"
+  - id: "review"
+    label: "Review"
+    color: "yellow"
+  - id: "blocked"
+    label: "Blocked"
+    color: "red"
+  - id: "done"
+    label: "Done"
+    color: "green"
+
+# Priority levels
+priorities:
+  - id: "low"
+    label: "Low"
+    weight: 1
+  - id: "medium"
+    label: "Medium"
+    weight: 2
+  - id: "high"
+    label: "High"
+    weight: 3
+  - id: "critical"
+    label: "Critical"
+    weight: 4
+
+# Git integration settings
+git:
+  enabled: true
+  commit_pattern: "{prefix}-\\d+"
+  branch_pattern: "(?i){prefix}[-_]\\d+"
+
+# Git hosting integration
+hosting:
+  provider: "github"  # Options: github, gitlab, gitea, none
+  cli_tool: "gh"      # Options: gh, glab
+  auto_sync: false
+  pr_url_template: "https://github.com/{owner}/{repo}/pull/{number}"
+  issue_url_template: "https://github.com/{owner}/{repo}/issues/{number}"
+
+# TUI settings
+tui:
+  vim_keys: true
+  show_git_links: true
+  board_columns:
+    - "todo"
+    - "in_progress"
+    - "review"
+    - "done"
+  mouse_enabled: false
+  sort_by: "priority"
+  sort_order: "desc"
+
+# CLI settings
+cli:
+  output_format: "human"
+  color: true
+  pager: "less"
+
+# Hooks configuration
+hooks:
+  auto_install: false
+  install:
+    - "post-commit"
+    - "post-checkout"
